@@ -1,2 +1,8 @@
 
 /* css */
+
+hr {
+  border: 4px solid #A21515;
+}
+
+#map { height: 180px; }
