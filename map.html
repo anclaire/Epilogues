@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!--Leaflet CSS file-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+
+
+    <title>dig245-final</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-8">
+        <h1>Volunteer</h1>
+      </div>
+    </div>
+
+  <hr id=hr></hr>
+  <br>
+
+    <div class="row">
+      <div class="col">
+        <div id="map"></div>
+      </div>
+    </div>
+
+    <!-- <div class="row">
+      <div class="col">
+        <footer>Map ©
+          <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>
+        </footer>
+      </div>
+    </div> -->
+
+  </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!--Leaflet JavaScript file-->
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin="">
+    </script>
+    <script>
+    var mymap = L.map('map').setView([35.23, -80.84], 13);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: 'pk.eyJ1IjoiYW5jbGFpcmUiLCJhIjoiY2t2cHFlbGF2ZWw2YTJxcTZudmJic281aSJ9.sj3rEwLet4s4RsJZ7VLuzg'
+    }).addTo(mymap);
+
+//marker with custom icon
+//  const icon = L.icon({
+//    iconURL: '',
+//    iconSize: [5, 5],
+//    iconAnchor: [25, 16]
+//  });
+
+
+    var apiURL = 'https://resources.usahello.org/en/resources?m_lat=35.499302&m_lng=-80.848686&distance=2000';
+    var markers = {
+
+    }
+
+    //API geolocation API
+    async function getAPI() {
+      var response = await fetch(apiURL);
+      var data = await response.json();
+      for (var i=0; i < data.length; i++) {
+        var marker = L.marker([data[i].latitude, data[i].longitude]).addTo(mymap);
+        markers[data[i].id] = marker
+      }
+
+      console.log(data[0]);
+    }
+
+    getAPI();
+
+
+    </script>
+</body>
+</html>
