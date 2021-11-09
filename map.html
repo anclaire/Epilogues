@@ -66,18 +66,13 @@
       accessToken: 'pk.eyJ1IjoiYW5jbGFpcmUiLCJhIjoiY2t2cHFlbGF2ZWw2YTJxcTZudmJic281aSJ9.sj3rEwLet4s4RsJZ7VLuzg'
     }).addTo(mymap);
 
-//marker with custom icon
-//  const icon = L.icon({
-//    iconURL: '',
-//    iconSize: [5, 5],
-//    iconAnchor: [25, 16]
-//  });
-
 
     var apiURL = 'https://resources.usahello.org/en/resources?m_lat=35.499302&m_lng=-80.848686&distance=2000';
-    var markers = {
-
-    }
+    var markers = L.icon({
+      iconUrl: 'https://www.iconpacks.net/icons/1/free-pin-icon-48-thumb.png',
+      iconSize: [38, 95],
+      iconAnchor:[22, 94],
+    });
 
     //API geolocation API
     async function getAPI() {
@@ -86,6 +81,7 @@
       for (var i=0; i < data.length; i++) {
         var marker = L.marker([data[i].latitude, data[i].longitude]).addTo(mymap);
         markers[data[i].id] = marker
+
       }
 
       console.log(data[0]);
@@ -93,7 +89,7 @@
 
     getAPI();
 
-
+//for map I followed this super helpful video: https://www.youtube.com/watch?v=uxf0--uiX0I&ab_channel=TheCodingTrain
     </script>
 </body>
 </html>
