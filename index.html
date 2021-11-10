@@ -21,13 +21,15 @@
 <body>
 
   <div class="container">
+    <!-- <div class="vl"> -->
     <div class="row">
       <div class="col-8">
         <h1>Volunteer</h1>
       </div>
     </div>
 
-  <hr id=hr></hr>
+  <hr></hr>
+
   <br>
 
     <div class="row">
@@ -44,8 +46,8 @@
       </div>
     </div> -->
 
+  <!-- VL : </div> -->
   </div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <!--Leaflet JavaScript file-->
@@ -69,9 +71,9 @@
 
     var apiURL = 'https://resources.usahello.org/en/resources?m_lat=35.499302&m_lng=-80.848686&distance=2000';
     var markers = L.icon({
-      iconUrl: 'https://www.iconpacks.net/icons/1/free-pin-icon-48-thumb.png',
-      iconSize: [38, 95],
-      iconAnchor:[22, 94],
+      // iconUrl: 'https://www.iconpacks.net/icons/1/free-pin-icon-48-thumb.png',
+      // iconSize: [38, 95],
+      // iconAnchor:[22, 94],         THESE AREN'T WORKING
     });
 
     //API geolocation API
@@ -79,9 +81,10 @@
       var response = await fetch(apiURL);
       var data = await response.json();
       for (var i=0; i < data.length; i++) {
-        var marker = L.marker([data[i].latitude, data[i].longitude]).addTo(mymap);
+        var marker = L.marker([data[i].latitude, data[i].longitude])
+        .addTo(mymap)
+        .bindPopup("<h6>Agency Name</h6><p>Description, address, contact</p>"); //var details = L.marker([data[i].description, data[i].address])
         markers[data[i].id] = marker
-
       }
 
       console.log(data[0]);
