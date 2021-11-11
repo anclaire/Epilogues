@@ -38,6 +38,15 @@
       </div>
     </div>
 
+  <br>
+    <!-- Get Location API -->
+    <div id="wrapper" class="row">
+      <div class="col">
+        <button id="location-button">find agencies near me</button>
+      <div id="output"></div>
+      </div>
+    </div>
+
     <!-- <div class="row">
       <div class="col">
         <footer>Map ©
@@ -45,6 +54,7 @@
         </footer>
       </div>
     </div> -->
+
 
   <!-- VL : </div> -->
   </div>
@@ -91,6 +101,19 @@
     }
 
     getAPI();
+
+  //Get location button
+
+  $('#location-button').click(function(){
+
+    if(navigator.geolocation)
+    navigator.geolocation.getCurrentPosition(function(position){
+      console.log(position);
+    });
+    else
+    console.log("location is not supported");
+  });
+  //source for getting geolocation: https://www.youtube.com/watch?v=KSf417F3ui0&ab_channel=RedStapler
 
 //for map I followed this super helpful video: https://www.youtube.com/watch?v=uxf0--uiX0I&ab_channel=TheCodingTrain
     </script>

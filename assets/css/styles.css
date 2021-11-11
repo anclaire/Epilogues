@@ -17,9 +17,22 @@ hr {
 }
 
 #map {
-  height: 44em;
-  width: 44em;
+  height: 38em;
+  width: 38em;
   margin: auto;
   padding: 10px;
   box-shadow: 5px 5px 5px grey;
+}
+
+button {
+  position: absolute;
+  background-color: #A11515;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  text-align: center;
+  font-size: .75em;
+  margin: auto;
+  padding: 10px;
+  cursor: pointer;
 }
