@@ -1,18 +1,25 @@
 
 /* css */
+body {
+    font-family: 'Roboto', sans-serif;
+}
 
 h1 {
-  padding: 30px 0px 0px 0px;
+  padding: 30px 0px 30px 0px;
+  font-size: 4em;
   font-family: 'Roboto', sans-serif;
 }
 
-h5 {
-  padding: 30px 0px 0px 0px;
-  font-family: 'Roboto', sans-serif;
+h2 {
+  padding: 10px 0px 10px 0px;
+  font-size: 2em;
 }
 
-p {
+.site-title {
+  padding: 30px 0px 30px 0px;
   font-family: 'Roboto', sans-serif;
+  margin: auto;
+  width: 50%;
 }
 
 /* .vl {
@@ -45,4 +52,12 @@ button {
   margin: auto;
   padding: 10px;
   cursor: pointer;
+}
+
+.nav-link {
+  color: black;
+}
+
+a {
+  color: #A11515;
 }
