@@ -29,12 +29,28 @@
   <div class="container">
     <!-- <div class="vl"> -->
     <div class="row">
-      <div class="col-8">
-        <h2>Volunteer</h2>
+      <div class="col offset-3">
+        <div class="site-title">
+          <h5>Volunteer</h5>
+          <div class="col offset-9">
+            <div class="navbar">
+              <a class="nav-link dropdown-toggle" style="color:black" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <b>Menu</b>
+                </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Home</a></li>
+                    <li><a class="dropdown-item" href="#">About</a></li>
+                    <li><a class="dropdown-item" href="#">Stories</a></li>
+                    <li><a class="dropdown-item" href="#">Writing</a></li>
+                    <li><a class="dropdown-item" href="volunteer.html">Volunteer</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          </div>
+          </div>
       </div>
-    </div>
-
-  <hr></hr>
 
   <br>
 
@@ -73,6 +89,25 @@
       crossorigin="">
     </script>
     <script>
+
+
+      //Get location button
+
+      $('#location-button').click(function(){
+
+        if(navigator.geolocation)
+        navigator.geolocation.getCurrentPosition(function(position){
+          console.log(position);
+        });
+        else
+        console.log("location is not supported");
+      });
+
+
+      //source for getting geolocation: https://www.youtube.com/watch?v=KSf417F3ui0&ab_channel=RedStapler
+
+
+
     var mymap = L.map('map').setView([35.23, -80.84], 13);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -107,21 +142,6 @@
     }
 
     getAPI();
-
-  //Get location button
-
-  $('#location-button').click(function(){
-
-    if(navigator.geolocation)
-    navigator.geolocation.getCurrentPosition(function(position){
-      console.log(position);
-    });
-    else
-    console.log("location is not supported");
-  });
-
-
-  //source for getting geolocation: https://www.youtube.com/watch?v=KSf417F3ui0&ab_channel=RedStapler
 
 //for map I followed this super helpful video: https://www.youtube.com/watch?v=uxf0--uiX0I&ab_channel=TheCodingTrain
     </script>
