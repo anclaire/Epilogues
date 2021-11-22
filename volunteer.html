@@ -29,10 +29,13 @@
   <div class="container">
     <!-- <div class="vl"> -->
     <div class="row">
-      <div class="col offset-3">
+      <div class="col-lg-3 col-md-4 col-sm-3"></div>
+      <div class="col-lg-6 col-md-4 col-sm-6">
         <div class="site-title">
-          <h5>Volunteer</h5>
-          <div class="col offset-9">
+        <h3>Volunteer</h3>
+      </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-3">
             <div class="navbar">
               <a class="nav-link dropdown-toggle" style="color:black" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <b>Menu</b>
@@ -48,26 +51,50 @@
               </ul>
             </div>
           </div>
-          </div>
-          </div>
       </div>
 
   <br>
 
     <div class="row">
-      <div class="col">
+      <div class="col-lg-6">
+      <h4>Hospitality in the U.S. often looks like taking the time out of your day to say,
+        "How can I help you?" Even if it’s a really small gesture, it means the world.</h4>
+        <p>For many refugees, one of the biggest surprises about life in the U.S. is how busy everyone's lives are.
+        It can be hard to adjust, find community, and receive assistance when those around them are
+        preoccupied with work and full schedules.</p>
+        <p>Even if your schedule does not permit you to spend extended time
+        with members of the refugee community, there are still plenty of opportunities for you to
+        get involved, including short-term sponsorship, shopping excursions, tutoring, and financial assistance,
+        to name a few.</p>
+        <p>As Luna said above, anything that says, "How can I help you?" goes a long way.</p>
+        <p>What are ways that you can lend a hand to assist the refugee community near you, either short-term or long-term?
+        </p>
+        <p>Use this map to help you find local organizations where you can get invovled.</p>
+
+        <div id="wrapper" class="col-lg-3 offset-lg-4 col-md-3">
+            <button id="location-button">find agencies near me</button>
+          <div id="output"></div>
+        </div>
+
+    </div>
+
+      <!-- <div class="col-lg-0 col-md-3 col-sm-3"></div> -->
+      <div class="col-lg-6 col-md-6 offset-md-2 offset-lg-0 col-sm-6">
         <div id="map"></div>
       </div>
+      <!-- <div class="col-lg-0 col-md-3 col-sm-3"></div> -->
     </div>
 
   <br>
     <!-- Get Location API -->
-    <div id="wrapper" class="row">
-      <div class="col">
+    <!-- <div id="wrapper" class="row">
+      <div class="col-lg-4 offset-lg-1 col-md-4 offset-md-1 col-sm-3"></div>
+      <div class="col-lg-4 col-md-4 col-sm-6">
         <button id="location-button">find agencies near me</button>
       <div id="output"></div>
       </div>
-    </div>
+      <div class="col-lg-4 col-md-4 col-sm-3"></div>
+    </div> -->
 
     <!-- <div class="row">
       <div class="col">
@@ -91,13 +118,13 @@
     <script>
 
 
-      //Get location button
+      //Get location button, this runs as soon as it's clicked (should run first)
 
       $('#location-button').click(function(){
 
         if(navigator.geolocation)
         navigator.geolocation.getCurrentPosition(function(position){
-          console.log(position);
+          console.log(position); // Could I instead get only lat and long from this? position.latitude or position.longitude? When I log "position.latitude", I get message that says "undefined"
         });
         else
         console.log("location is not supported");
@@ -106,36 +133,33 @@
 
       //source for getting geolocation: https://www.youtube.com/watch?v=KSf417F3ui0&ab_channel=RedStapler
 
-
-
-    var mymap = L.map('map').setView([35.23, -80.84], 13);
+    var mymap = L.map('map').setView([35.23, -80.84], 13); //<-- this is set to center in on Charlotte, but I'd need to change this to not show up until button is clicked. Instead set the variables to... position[i].latitude and position[i].longitude?
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      maxZoom: 18,
+      maxZoom: 15,
       id: 'mapbox/streets-v11',
       tileSize: 512,
       zoomOffset: -1,
       accessToken: 'pk.eyJ1IjoiYW5jbGFpcmUiLCJhIjoiY2t2cHFlbGF2ZWw2YTJxcTZudmJic281aSJ9.sj3rEwLet4s4RsJZ7VLuzg'
-    }).addTo(mymap);
+    }).addTo(mymap); //This creates the map and determines the zoom level/tile size etc
 
-
-    var apiURL = 'https://resources.usahello.org/en/resources?m_lat=35.499302&m_lng=-80.848686&distance=2000';
-    var markers = L.icon({
+    var apiURL = 'https://resources.usahello.org/en/resources?m_lat=35.499302&m_lng=-80.848686&distance=2000'; // refugee resource API
+    var marker = L.icon({
       // iconUrl: 'https://www.iconpacks.net/icons/1/free-pin-icon-48-thumb.png',
       // iconSize: [38, 95],
-      // iconAnchor:[22, 94],         THESE AREN'T WORKING
+      // iconAnchor:[22, 94],        // variable for the icons used, I decided I don't really want to change it
     });
 
-    //API geolocation API
+    // geolocation API, this runs second after the map appears at the moment, but I'd like it to appear after the user clicks the button
     async function getAPI() {
       var response = await fetch(apiURL);
       var data = await response.json();
       for (var i=0; i < data.length; i++) {
         var marker = L.marker([data[i].latitude, data[i].longitude])
         .addTo(mymap)
-        .bindPopup("<h6>Agency Name</h6><p>Description, address, contact</p>"); //var details = L.marker([data[i].description, data[i].address])
-        markers[data[i].id] = marker
+        .bindPopup("<h6>Agency Name</h6><p>Description, address, contact</p>"); //insert something like this instead: var details = L.marker([data[i].description, data[i].address]) and bindPopup(details) so that the details I want show up instead
+        marker[data[i].id] = marker //what does this do?
       }
 
       console.log(data[0]);
@@ -143,7 +167,14 @@
 
     getAPI();
 
-//for map I followed this super helpful video: https://www.youtube.com/watch?v=uxf0--uiX0I&ab_channel=TheCodingTrain
+// map.setView(latitude, longitude); <-- I want this to call the latitude and longitude of the user's location
+
+//for map setup I followed this video: https://www.youtube.com/watch?v=uxf0--uiX0I&ab_channel=TheCodingTrain
+
+//PSEUDOCODE:
+//On click, get geolocation. Print in console.
+//Find latitude and longitude IDs and save to global variable
+//Update var apiURL according to the long/lat data so it would look something like: var apiURL = 'https://resources.usahello.org/en/resources?m_lat=‘+'lat.variable'+'&m_lng=‘+'lon.variable'+'&distance=2000';
     </script>
 </body>
 </html>
