@@ -57,6 +57,8 @@ h4 {
     text-align: center;
     font-size: .60em;
     padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 /* sizes: l, xl */
 @media (min-width: 992px) {
@@ -113,3 +115,32 @@ a {
   border: 1px solid #A11515;
   opacity: 1;
 } */
+
+/* DOWN ARROW HOME PAGE*/
+.arrow {
+  box-sizing: border-box;
+  height: 3vw;
+  width: 3vw;
+  border-style: solid;
+  border-color: #A11515;
+  border-width: 0px 1px 1px 0px;
+  transform: rotate(45deg);
+  transition: border-width 150ms ease-in-out;
+}
+
+.arrow:hover {
+  border-bottom-width: 4px;
+  border-right-width: 4px;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+#full {
+  height: 100vh;
+  background-color: white;
+}
