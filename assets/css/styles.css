@@ -121,8 +121,25 @@ button:hover {
   width: 40%;
 }
 
-a {
+a, a:link {
   color: #A11515;
+  text-decoration: none;
+}
+
+
+a:hover {
+  color: #BE2215;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #821515;
+  text-decoration: none;
+}
+
+a:active {
+  color: #BE2215;
+  text-decoration: none;
 }
 
 /* hr {
@@ -153,6 +170,6 @@ a {
 }
 
 #full {
-  height: 100vh;
+  height: 90vh;
   background-color: white;
 }
