@@ -169,7 +169,27 @@ a:active {
   background-color: white;
 }
 
+.box2 {
+  display: flex;
+  background-color: white;
+}
+
+.box3 {
+  display: flex;
+  background-color: white;
+}
+
 #full {
-  height: 90vh;
+  height: 93vh;
+  background-color: white;
+}
+
+#full2 {
+  height: 93vh;
+  background-color: white;
+}
+
+#full3 {
+  height: 93vh;
   background-color: white;
 }
