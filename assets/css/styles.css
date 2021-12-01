@@ -34,8 +34,8 @@ p {
 }
 
 #map {
-  height: 25em;
-  width: 25em;
+  height: 20em;
+  width: 20em;
   margin: auto;
   padding: 5px;
   box-shadow: 5px 5px 5px grey;

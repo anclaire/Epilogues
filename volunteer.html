@@ -72,22 +72,32 @@
                 <p>As Luna said above, anything that says, "How can I help you?" goes a long way.</p>
                 <p>What are ways that you can lend a hand to assist the refugee community near you, either short-term or long-term?
                 </p>
-                <p>Use this map to help you find local organizations where you can get invovled. After you click on the button, it may take a moment for your location to load.</p>
+                <p>Use this map to help you find local organizations where you can get invovled.</p>
+
+            <div id="wrapper">
+                    <button id="location-button" style="margin-left:15%;">find agencies near me</button>
+                    <div id="output"></div>
+
+            </div>
+
+            <div>
+              <br>
+              <br>
+            </div>
 
 
             </div>
 
-
-            <!-- <div class="col-lg-0 col-md-3 col-sm-3"></div> -->
-                  <div class="col-lg-6 col-md-6 offset-md-2 offset-lg-0 col-sm-6">
-                      <div id="map"></div>
-                  </div>
+            <div class="col-lg-6 col-md-6 offset-md-2 offset-lg-0 col-sm-6">
+              <div id="map"></div>
+                <p style="font-size:.75rem; margin: 20px 20px;">Your location may take a moment to load after clicking the button; thank you for your patience.</p>
+            </div>
 
       </div>
 
 
 
-        <div class= "row">
+        <!-- <div class= "row">
             <div class="col-lg-2 col-md-4 col-sm-4"></div>
             <div class="col-lg-2 offset-lg-0 col-md-4 offset-md-1 col-sm-4 offset-sm-0">
               <div id="wrapper">
@@ -96,7 +106,7 @@
               </div>
             </div>
             <div class="col-lg-8 col-md-4 col-sm-4"></div>
-        </div>
+        </div> -->
             <!-- <div class="col-lg-0 col-md-3 col-sm-3"></div> -->
 
         <br>
@@ -144,16 +154,17 @@
 
             if (navigator.geolocation && navigator.geolocation !== {})
                 navigator.geolocation.getCurrentPosition(function(position) {
-                    console.log(position); // Could I instead get only lat and long from this? position.latitude or position.longitude? When I log "position.latitude", I get message that says "undefined"
+                    console.log(position);
 
                     lat = position.coords.latitude;
                     lng = position.coords.longitude;
                     getAPI();
                 }, function(err) {
-                    console.error(err)
+                    console.error(err);
+                    alert("your location is not supported; please enable location services in your browser preferences")
                 });
             else
-                console.log("location is not supported");
+                alert("location is not supported");
         });
 
 
@@ -185,14 +196,14 @@
             // default
             var apiURL = 'https://resources.usahello.org/en/resources?m_lat=' + lat + '&m_lng=' + lng + '&distance=2000';
 
-            console.log(apiURL);
+            //console.log(apiURL);
 
             var response = await fetch(apiURL);
             data = await response.json();
             // data has been updated
             createMarkers()
 
-            console.log(data[0]);
+            //console.log(data[0]);
         }
         getAPI();
 
@@ -200,8 +211,8 @@
 
         function createMarkers() {
 
-            console.log(1, markers);
-            console.log(1, data);
+            //console.log(1, markers);
+          //  console.log(1, data);
 
             // removes previous
             for (var i = 0; i < markers.length; i++) {
@@ -217,19 +228,24 @@
             for (var i = 0; i < data.length; i++) {
                 if ([data[i].latitude && [data[i].latitude != 0 && data[i].longitude] && data[i].longitude] != 0) {
 
-                    // console.log(data[i])
+                    //console.log(data[i])
 
                     var marker = L.marker([data[i].latitude, data[i].longitude])
                         .addTo(mymap)
                         .bindPopup(
-                            "<h6>Agency Name</h6><p>Description, address, contact</p>"
+                          `<h6>${data[i].name}</h6>
+                          <p style="text-align:left;">${data[i].description}</p>
+                          <p>Address: ${data[i].address}</p>
+                          <p>Phone: ${data[i].phone}</p>
+                          <p>Website: ${data[i].website}</p>`
+
                         ); //insert something like this instead: var details = L.marker([data[i].description, data[i].address]) and bindPopup(details) so that the details I want show up instead
                     // add new marker references to markers
                     markers.push(marker)
                 }
             }
-            console.log(2, markers);
-            console.log(2, data);
+            //console.log(2, markers);
+            //console.log(2, data);
             mymap.setView(new L.LatLng(lat, lng), 9)
 
             // get the bounds automatically
