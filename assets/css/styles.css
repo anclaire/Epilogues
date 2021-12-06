@@ -76,14 +76,13 @@ p {
   #map { height: 43em;
     width: 43em;
     padding: 2px;}
-    button {
+  button {
       position: absolute;
       background-color: #A11515;
       border-radius: 10px;
       border: none;
       color: white;
-      margin-left: auto;
-      margin-right: auto;
+      margin: auto;
       text-align: center;
       font-size: .60em;
       padding: 15px; }
@@ -149,6 +148,7 @@ a:active {
 
 /* DOWN ARROW HOME PAGE*/
 .arrow {
+  margin: auto;
   box-sizing: border-box;
   height: 3vw;
   width: 3vw;
@@ -169,27 +169,22 @@ a:active {
   background-color: white;
 }
 
-.box2 {
-  display: flex;
-  background-color: white;
-}
-
-.box3 {
-  display: flex;
-  background-color: white;
-}
-
 #full {
-  height: 93vh;
+  height: 100vh;
+  background-color: white;
+}
+
+#full1 {
+  height: 100vh;
   background-color: white;
 }
 
 #full2 {
-  height: 93vh;
+  height: 100vh;
   background-color: white;
 }
 
 #full3 {
-  height: 93vh;
+  height: 100vh;
   background-color: white;
 }
