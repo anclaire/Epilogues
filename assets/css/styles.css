@@ -25,6 +25,11 @@ p {
   text-align: justify;
 }
 
+blockquote {
+  margin: 1rem;
+}
+
+
 .site-title {
   padding: 30px 0px 30px 0px;
   font-family: 'Roboto', sans-serif;
