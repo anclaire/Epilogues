@@ -25,6 +25,28 @@ p {
   text-align: justify;
 }
 
+a, a:link {
+  color: #A11515;
+  text-decoration: none;
+}
+
+
+a:hover {
+  color: #BE2215;
+  text-decoration: none;
+}
+/* Why isn't this working?? */
+
+a:visited {
+  color: #821515;
+  text-decoration: none;
+}
+
+a:active {
+  color: #BE2215;
+  text-decoration: none;
+}
+
 button {
   position: absolute;
   background-color: #A11515;
@@ -42,41 +64,6 @@ button:hover {
   background: #BE2215;
 }
 
-.navbar {
-  width: 40%;
-}
-.nav-link {
-  color: black;
-  text-align: center;
-  float: right;
-  width: 40%;
-}
-
-a, a:link {
-  color: #A11515;
-  text-decoration: none;
-}
-
-
-a:hover {
-  color: #BE2215;
-  text-decoration: none;
-}
-
-a:visited {
-  color: #821515;
-  text-decoration: none;
-}
-
-a:active {
-  color: #BE2215;
-  text-decoration: none;
-}
-
-/* hr {
-  border: 1px solid #A11515;
-  opacity: 1;
-} */
 
 /* DOWN ARROW HOME PAGE*/
 .arrow {
